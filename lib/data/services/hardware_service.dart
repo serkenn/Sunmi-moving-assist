@@ -672,13 +672,6 @@ class MockHardwareService implements HardwareService {
     '5901234567890',
   ];
 
-  static const List<String> _mockProductNames = [
-    'テスト商品A',
-    'サンプル商品B',
-    'デモ商品C',
-    'モック商品D',
-  ];
-
   int _mockCounter = 0;
 
   @override
@@ -696,44 +689,44 @@ class MockHardwareService implements HardwareService {
   Future<void> printProductTag(Product product) async {
     await Future.delayed(const Duration(milliseconds: 500));
 
-    print('MOCK PRINT: Product Tag');
-    print('Name: ${product.name}');
-    print('Barcode: ${product.barcode}');
-    print('Category: ${product.category}');
+    debugPrint('MOCK PRINT: Product Tag');
+    debugPrint('Name: ${product.name}');
+    debugPrint('Barcode: ${product.barcode}');
+    debugPrint('Category: ${product.category}');
     if (product.hasAiAnalysis) {
-      print('AI Decision: ${product.movingDecision}');
+      debugPrint('AI Decision: ${product.movingDecision}');
     }
-    print('--- End Tag ---');
+    debugPrint('--- End Tag ---');
   }
 
   @override
   Future<void> printInventoryList(List<Product> products) async {
     await Future.delayed(const Duration(seconds: 1));
 
-    print('MOCK PRINT: Inventory List');
-    print('Total Products: ${products.length}');
+    debugPrint('MOCK PRINT: Inventory List');
+    debugPrint('Total Products: ${products.length}');
     for (int i = 0; i < products.length; i++) {
-      print('${i + 1}. ${products[i].name} (${products[i].barcode})');
+      debugPrint('${i + 1}. ${products[i].name} (${products[i].barcode})');
     }
-    print('--- End List ---');
+    debugPrint('--- End List ---');
   }
 
   @override
   Future<void> printQrCode(String data, {String? label}) async {
     await Future.delayed(const Duration(milliseconds: 350));
-    print('MOCK PRINT: QR CODE');
-    print('Label: ${label ?? '-'}');
-    print('Data: $data');
-    print('--- End QR ---');
+    debugPrint('MOCK PRINT: QR CODE');
+    debugPrint('Label: ${label ?? '-'}');
+    debugPrint('Data: $data');
+    debugPrint('--- End QR ---');
   }
 
   @override
   Future<void> printBarcode(String data, {String? label}) async {
     await Future.delayed(const Duration(milliseconds: 350));
-    print('MOCK PRINT: BARCODE');
-    print('Label: ${label ?? '-'}');
-    print('Data: $data');
-    print('--- End BARCODE ---');
+    debugPrint('MOCK PRINT: BARCODE');
+    debugPrint('Label: ${label ?? '-'}');
+    debugPrint('Data: $data');
+    debugPrint('--- End BARCODE ---');
   }
 
   @override
