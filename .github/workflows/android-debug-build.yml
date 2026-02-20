@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+    tags:
+      - "v*"
   pull_request:
     branches:
       - main
@@ -12,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: android-debug-build-${{ github.ref }}
@@ -58,3 +60,12 @@ jobs:
           name: app-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: build/app/outputs/flutter-apk/app-debug.apk
